@@ -7,8 +7,6 @@ const {
 } = require('@google-cloud/local-auth');
 
 async function runSample(query) {
-
-
   const authClient = await authenticate({
     keyfilePath: path.join(__dirname, 'credentials.json'),
     scopes: 'https://www.googleapis.com/auth/drive',
