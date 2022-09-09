@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "@google-cloud/local-auth": "^2.0.0",
+    "@googleapis/forms": "^1.1.0",
+    "axios": "^0.27.2",
+    "googleapis": "^39.2.0",
+    "init": "^0.1.2",
+    "path": "^0.12.7"
+  },
+  "name": "git-desktop",
+  "description": "learn git desktop",
+  "version": "1.0.0",
+  "main": "apps.js",
+  "scripts": {
+    "test": "154"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ratanon-144/git-desktop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ratanon-144/git-desktop/issues"
+  },
+  "homepage": "https://github.com/ratanon-144/git-desktop#readme"
+}
