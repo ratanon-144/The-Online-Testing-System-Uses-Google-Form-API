@@ -1,7 +1,7 @@
 # The-Online-Testing-System-Uses-Google-Form-API
 ระบบการทดสอบออนไลน์โดยโดย Google Form API
 install packet
-     npm install react-google-login gapi-script googleapis googleapis-common mdb-react-ui-kit mdbreact  --force
+    npm install react-google-login gapi-script googleapis googleapis-common mdb-react-ui-kit mdbreact  --force
 ทดสอบ สร้าง google form
     custom.js 
 ทดสอบ ส่ง google Gmail
