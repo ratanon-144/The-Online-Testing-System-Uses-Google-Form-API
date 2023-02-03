@@ -1,86 +1,114 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
+import { styled } from "@mui/material/styles";
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import { Badge, Box, Menu, MenuItem } from "@mui/material";
+import { AccountCircle } from "@mui/icons-material";
+import MailIcon from "@mui/icons-material/Mail";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import { useAppDispatch } from "@/store/store";
+import { signOut } from "@/store/slices/userSlice";
+import { blue } from "@mui/material/colors";
 
-type Props = {};
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const drawerWidth = 240;
 
-export default function Header({}: Props) {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+interface AppBarProps extends MuiAppBarProps {
+  open?: boolean;
+}
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== "open",
+})<AppBarProps>(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(["width", "margin"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+type HeaderProp = {
+  open: boolean;
+  onDrawerOpen: () => void;
+};
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+export default function Header({ open, onDrawerOpen }: HeaderProp) {
+  const [showProfileMenu, setShowProfileMenu] = React.useState(false);
+  const dispatch = useAppDispatch();
+
+  const handleClose = () => {
+    setShowProfileMenu(false);
   };
 
   return (
-    <AppBar
-      position="fixed"
-      sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-    >
+    <AppBar position="fixed" open={open}>
+      
       <Toolbar>
-        <Box sx={{ flexGrow: 1 }}>
-          <Typography variant="h6" noWrap component="div">
-            Quiz Bank
-          </Typography>
-        </Box>
-        <Box>
-          <Tooltip title="Open settings">
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar
-                alt="รูปภาพ"
-                src="https://lh3.googleusercontent.com/a/AEdFTp4PDUjesufyakZqnqg4dnhtY1Gzog9c8-9yMppLSw=s96-c-rg-br100"
-              />
-            </IconButton>
-          </Tooltip>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={onDrawerOpen}
+          edge="start"
+          
+          sx={{
+            
+            marginRight: 5,
+            ...(open && { display: "none" }),
+          }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h6" noWrap component="div">
+        {/*ชื่อขอบบา */}
+        
+          {process.env.NEXT_PUBLIC_APP_VERSION}
+        </Typography>
+
+        <Box sx={{ flexGrow: 1 }} />
+
+        <Typography variant="h6" noWrap component="div" fontWeight="300">
+         ผศ.ธนา หงษ์สุวรรณ
+        </Typography>
+        <Box sx={{ display: { xs: "none", md: "flex" } }}>
+        
+        
+        {/* ไอคอนโปรไฟล์ */}
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-haspopup="true"
+            onClick={() => setShowProfileMenu(!showProfileMenu)}
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+
           <Menu
-            sx={{ mt: "45px" }}
-            id="menu-appbar"
-            anchorEl={anchorElUser}
             anchorOrigin={{
               vertical: "top",
               horizontal: "right",
+            
             }}
             keepMounted
             transformOrigin={{
               vertical: "top",
               horizontal: "right",
             }}
-            open={Boolean(anchorElUser)}
-            onClose={handleCloseUserMenu}
+            open={showProfileMenu}
+            onClose={handleClose}
           >
-            {settings.map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">{setting}</Typography>
-              </MenuItem>
-            ))}
+            <MenuItem onClick={() => dispatch(signOut())}>โพรไฟล์</MenuItem>
+            <MenuItem onClick={handleClose}>ออกจากระบบ</MenuItem>
           </Menu>
         </Box>
       </Toolbar>
