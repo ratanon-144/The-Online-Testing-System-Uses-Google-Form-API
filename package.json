@@ -17,6 +17,7 @@
     "@mui/material": "^5.11.9",
     "@mui/styled-engine-sc": "^5.11.9",
     "@mui/x-data-grid": "^5.17.23",
+    "@mui/x-data-grid-generator": "^5.17.25",
     "@next/font": "13.1.6",
     "@types/node": "18.13.0",
     "@types/react": "18.0.28",

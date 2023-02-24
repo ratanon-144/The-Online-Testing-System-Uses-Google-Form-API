@@ -1,134 +1,107 @@
-import Layout from "@/components/Layouts/Layout";
-import { Box, MenuItem, TextField, Typography } from "@mui/material";
-import React from "react";
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
-import EditIcon from '@mui/icons-material/Edit';
+import * as React from 'react';
+import {
+  DataGrid,
+  GridActionsCellItem,
+  GridRowId,
+  GridColumns,
+} from '@mui/x-data-grid';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import Layout from "@/components/Layouts/Layout";
+import { Box, Button, Card, MenuItem, TextField, Typography } from "@mui/material";
+import Stack from '@mui/material/Stack';
 
-type Props = {};
-// SelectTextFields
 const currencies = [
-  {
-    value: "semester",
-    label: "1/2565",
+    { value: "เทอม 1",label: "1/2565",},
+    { value: "เทอม 2", label: "2/2565",},
+    {value: "เทอม 3",label: "3/2565",},
+  ];
+const initialRows = [
+  {id:1, subjectid:'01076010',subjectname:'Computer Network' ,isAdmin: true,secid:'101' },
+  {id:2, subjectid:'01076010',subjectname:'Computer Network' ,isAdmin: true,secid:'53' },
+  {id:3, subjectid:'01076015',subjectname:'Computer Engineering Professional Development' ,isAdmin: true,secid:'101'},
+];
+
+type Row = typeof initialRows[number];
+export default function ColumnTypesGrid() {
+  const [rows, setRows] = React.useState<Row[]>(initialRows);
+
+  const deleteUser = React.useCallback(
+    (id: GridRowId) => () => {
+      setTimeout(() => {
+        setRows((prevRows) => prevRows.filter((row) => row.id !== id));
+      });
+    },
+    [],
+  );
    
-    
-  },
-
-];
-// ตาราง
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.warning.light,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 16,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
-
-function createData(
-  id:string,
-  subjectname: string,
-  group: string,
-  Action: any,
- 
-) {
-  return { id, subjectname, group, Action };
-}
-
-const rows = [
-  createData('01076010', 'Computer Network', '101', ),
-  createData('01076010', 'Computer Network', '101', ),
-];
-
-export default function course({}: Props) {
+  const duplicateUser = React.useCallback(
+    (id: GridRowId) => () => {
+      setRows((prevRows) => {
+        const rowToDuplicate = prevRows.find((row) => row.id === id)!;
+        return [...prevRows, { ...rowToDuplicate, id: Date.now() }];
+      });
+    },
+    [],
+  );
+   
+  const columns = React.useMemo<GridColumns<Row>>(
+    () => [
+      { field: 'subjectid', type: 'string' , headerName: 'รหัสวิชา', width: 150},
+      { field: 'subjectname', type: 'string', headerName: 'ชื่อวิชา',  flex: 1},
+      { field: 'secid', type: 'singleSelect',
+         headerName:'กลุ่ม',width: 100, 
+        valueOptions: ({ row }) => {
+            return ['101', '102', '53'];
+        },
+      }, 
+      {  field: 'actions', type: 'actions', headerName:'Actions',width: 200,
+        getActions: (params) => [
+          // eslint-disable-next-line react/jsx-key
+          <GridActionsCellItem
+          icon={<ModeEditIcon />}
+          label="Editter"
+          onClick={duplicateUser(params.id)}
+          
+        />,// eslint-disable-next-line react/jsx-key
+          <GridActionsCellItem
+            icon={<DeleteIcon />}
+            label="Delete"
+            onClick={deleteUser(params.id)}
+          />,
+      
+        ],
+      },
+    ],
+    [duplicateUser,deleteUser],
+  );
+  const [status, setStatus] = React.useState('connected');
   return (
     <Layout>
-        
-       <Typography Text-align="" variant="h3">รายวิชา</Typography>
-     
-
-      {/* SelectTextFields */}
-      <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <div>
-          <TextField
-            id="outlined-select-currency"
-            select
-            label="ภาคการศึกษาที่ "
-            
-            defaultValue="EUR"
-            // helperText="Please select your currency"
-          >
-            {currencies.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-        </div>
+    <Stack spacing={2}> 
+   <Typography Text-align="" variant="h2">รายวิชา</Typography>
+   <Card sx={{ margin:"10",padding: "30px 25px",textTransform: "capitalize",}}>
+   <Box component="form" sx={{  "& .MuiTextField-root": { m: 1, width: "25ch" },}} noValidate autoComplete="off">
+    <div>
+      <TextField id="outlined-select-currency" select label="ภาคการศึกษาที่">
+        {currencies.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </TextField>
+    </div>
+  </Box>
+  
+  
+    <Box style={{ height: 500, width: '100%' }}>
+      <DataGrid columns={columns} rows={rows} />
+    </Box>
+    <Box display="flex" justifyContent="flex-end" >
+    <Button  sx={{ margin: 1 }}  size="large" variant="contained" >สร้างรายวิชา </Button>
       </Box>
-   <div>
-   </div>
-
-
-      {/* ตารางรายวิชา */}
-
-      <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="center">รหัสวิชา</StyledTableCell>
-            <StyledTableCell align="center">ชื่อวิชา</StyledTableCell>
-            <StyledTableCell align="center">กลุ่ม</StyledTableCell>
-            <StyledTableCell align="center">Action</StyledTableCell>
-           
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.id}>
-              <StyledTableCell align="center">{row.id}</StyledTableCell>
-              
-
-              <StyledTableCell component="th" scope="row"  align="left">
-                {row.subjectname}
-              </StyledTableCell>
-              
-              <StyledTableCell align="center">{row.group}</StyledTableCell>
-              <StyledTableCell align="center">{row.action}</StyledTableCell>
-              
-            </StyledTableRow>
-          ))}
-
-        </TableBody>
-      </Table>
-    </TableContainer>
+      </Card>
+    </Stack>
     </Layout>
   );
 }

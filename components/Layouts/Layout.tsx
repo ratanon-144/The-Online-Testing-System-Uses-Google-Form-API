@@ -18,7 +18,7 @@ export default function Layout({ children }: LayoutProps) {
       <CssBaseline />
       <Header />
       {(data && data.user_id[1]) == "instructor" ? <Menu_Instructor /> : <Menu_Student />}
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 , backgroundColor:'#F2F2F2' }}>
         <Toolbar />
         {children}
       </Box>

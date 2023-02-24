@@ -26,14 +26,14 @@ export default function Menu() {
     >
       <Toolbar />
       <Box sx={{ overflow: 'auto' }}>
-        <ListItem   component="a" href="/instructor/course" >
+        <ListItem   component="a" href="/instructor" >
           <ListItemIcon>
             <MenuBook />
           </ListItemIcon>
           <ListItemText primary="รายวิชา" />
         </ListItem>
         <Divider />
-        <ListItem   component="a" href="/instructor/createTest">
+        <ListItem   component="a" href="/instructor/testStatus">
           <ListItemIcon>
             <LibraryAddCheck />
           </ListItemIcon>
