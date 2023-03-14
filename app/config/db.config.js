@@ -1,9 +1,8 @@
-require('dotenv').config();
 module.exports = {
-  HOST : process.env.MYSQL_HOST,
-  USER : process.env.MYSQL_USER,
-  PASSWORD : process.env.MYSQL_PASSWORD,
-  DB : process.env.MYSQL_DATABASE,
+  HOST: "51.79.251.237",
+  USER: "63015144",
+  PASSWORD: "63015144@kmitl",
+  DB: "data_api_form",
   dialect: "mysql",
   pool: {
     max: 5,

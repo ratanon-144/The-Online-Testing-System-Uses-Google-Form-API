@@ -1,5 +1,5 @@
 const db = require("../models");
-const Account = db.accounts;
+const Course = db.courses;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new account
@@ -11,21 +11,18 @@ exports.create = (req, res) => {
     });
     return;
   }
-
+  
   // Create a account
-  const account = {
-    statuts: req.body.statuts,
-    title: req.body.title,
-    fname: req.body.fname,
-    lname: req.body.lname,
-    sex: req.body.sex,
-    email: req.body.email,
-    avatar: req.body.avatar  
+  const course = {
+    course_id: req.body.course_id,
+    course_title: req.body.course_title,
+    descrioion: req.body.descrioion,
+     
   };
 
   // Save account in the database
  // Save Tutorial in the database
- Account.create(account)
+ Course.create(course)
  .then(data => {
    res.send(data);
  })
@@ -40,9 +37,9 @@ exports.create = (req, res) => {
 
 // Retrieve all accounts from the database.
 exports.findAll = (req, res) => {
-  const statuts = req.query.statuts;
-  var condition = statuts ? { statuts: { [Op.like]: `%${statuts}%` } } : null;
-  Account.findAll({ where: condition })
+  const course_id = req.query.course_id;
+  var condition = course_id ? { course_id: { [Op.like]: `%${course_id}%` } } : null;
+  Course.findAll({ where: condition })
     .then(data => {
       res.send(data);
     })
@@ -58,7 +55,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Account.findByPk(id)
+  Course.findByPk(id)
     .then(data => {
       if (data) {
         res.send(data);
@@ -79,7 +76,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  Account.update(req.body, {
+  Course.update(req.body, {
     where: { id: id }
   })
     .then(num => {
@@ -104,7 +101,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Account.destroy({
+  Course.destroy({
     where: { id: id }
   })
     .then(num => {
@@ -127,7 +124,7 @@ exports.delete = (req, res) => {
 
 // Delete all accounts from the database.
 exports.deleteAll = (req, res) => {
-  Account.destroy({
+  Course.destroy({
     where: {},
     truncate: false
   })
