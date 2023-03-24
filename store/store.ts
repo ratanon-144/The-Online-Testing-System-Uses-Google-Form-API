@@ -1,16 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
+
 import userReducer from "./slices/userSlice";
-
-
+import productReducer from "./slices/productSlice";
+import courseReducer from "./slices/courseSlice";
+import profileReducer from "./slices/profileSlice";
 const reducer = {
   user: userReducer,
-  // product: productReducer,
+  product: productReducer,
+  profile: profileReducer,
+  course: courseReducer
 };
 
 export const store = configureStore({
   reducer,
-  //  devTools: ture,
   devTools: process.env.NODE_ENV === "development",
 });
 

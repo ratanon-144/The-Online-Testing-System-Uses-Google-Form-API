@@ -16,13 +16,11 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"], 
+      "@/components/*": ["components/*"],      
       "@/models/*": ["models/*"],
       "@/store/*": ["store/*"],
       "@/services/*": ["services/*"],
-      "@/utils/*": ["utils/*"],
-      //"@/services/serverService/*": ["services/serverService/*"], 
-     // "@/store/store/*": ["store/store/*"],
+      "@/utils/*": ["utils/*"], 
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

@@ -11,15 +11,11 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { blue} from "@mui/material/colors";
-
-
-
-
+import { blue } from "@mui/material/colors";
 import { ListItem, Stack } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
-import { BarChart, Person,MenuBook, Group, PersonAdd, LibraryAddCheck, Quiz, TableChart } from "@mui/icons-material";
+import { Layers, BarChart, Person , MenuBook, Group, PersonAdd, LibraryAddCheck, Quiz, TableChart } from "@mui/icons-material";
 import { useRouter } from "next/router";
 
 const drawerWidth = 240;
@@ -82,130 +78,104 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
 
   return (
     <Drawer variant="permanent" open={open}>
-      <DrawerHeader>
-        <Stack
-          direction="row"
-          alignItems="center"
-          sx={{ backgroundColor: blue }}
-        >
-          <Image
-            src="/static/img/logo.png"
-            width={200}
-            height={40}
-            objectFit="contain"
-            alt="logo"
-          />
-          <IconButton onClick={onDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-            
-          </IconButton>
-        </Stack>
-      </DrawerHeader>
-      <Divider />
-
+      <DrawerHeader/>
       <Divider />
       <List>
-        {/* รายวิชา*/}
-        <Link href="/รายวิชา" passHref>
+        {/* รายวิชา */}
+        <Link href="/instructor" passHref>
           <ListItem
             button
-            className={router.pathname === "/รายวิชา" ? "Mui-selected" : ""}
+            className={router.pathname === "/instructor" ? "Mui-selected" : ""}
           >
             <ListItemIcon>
-              <MenuBook 
-              color=""/>
+              <MenuBook />
             </ListItemIcon>
             <ListItemText primary="รายวิชา" />
           </ListItem>
         </Link>
 
         {/* การทดสอบ */}
-        <Link href="/การทดสอบ" passHref>
+        <Link href="/instructor/testStatus" passHref>
           <ListItem
             button
-            className={router.pathname === "/การทดสอบ" ? "Mui-selected" : ""}
+            className={router.pathname === "/instructor/testStatus" ? "Mui-selected" : ""}
           >
             <ListItemIcon>
-              <LibraryAddCheck />
+            <LibraryAddCheck />
             </ListItemIcon>
             <ListItemText primary="การทดสอบ" />
           </ListItem>
         </Link>
 
-        {/* รายชื่อ */}
-        <Link href="/รายชื่อ" passHref>
+           {/* รายชื่อ */}
+           <Link href="/instructor/studentList" passHref>
           <ListItem
             button
-            className={router.pathname === "/รายชื่อ" ? "Mui-selected" : ""}
+            className={router.pathname === "/instructor/studentList" ? "Mui-selected" : ""}
           >
             <ListItemIcon>
-              <Group />
+            <Group />
             </ListItemIcon>
             <ListItemText primary="รายชื่อ" />
           </ListItem>
         </Link>
 
-        {/*เพิ่มผู้สอน */}
-        <Link href="/เพิ่มผู้สอน" passHref>
+        {/* เพิ่มผู้สอน */}
+        <Link href="/instructor/addInstructor" passHref>
           <ListItem
             button
-            className={router.pathname === "/เพิ่มผู้สอน" ? "Mui-selected" : ""}
+            className={router.pathname === "/instructor/addInstructor" ? "Mui-selected" : ""}
           >
             <ListItemIcon>
-              <PersonAdd />
+            <PersonAdd />
             </ListItemIcon>
             <ListItemText primary="เพิ่มผู้สอน" />
           </ListItem>
         </Link>
 
+        
         {/* คลังข้อสอบ */}
-        <Link href="/คลังข้อสอบ" passHref>
+        <Link href="/instructor/examLibrary" passHref>
           <ListItem
             button
-            className={router.pathname === "/คลังข้อสอบ" ? "Mui-selected" : ""}
+            className={router.pathname === "/instructor/examLibrary" ? "Mui-selected" : ""}
           >
             <ListItemIcon>
-              <Quiz />
+            <Quiz />
             </ListItemIcon>
             <ListItemText primary="คลังข้อสอบ" />
           </ListItem>
         </Link>
 
-        {/* คะแนน */}
-        <Link href="/คะแนน" passHref>
+          {/* คะแนน */}
+          <Link href="/instructor/score" passHref>
           <ListItem
             button
-            className={router.pathname === "/คะแนน" ? "Mui-selected" : ""}
+            className={router.pathname === "/instructor/score" ? "Mui-selected" : ""}
           >
             <ListItemIcon>
-              <TableChart
-              color=""
-              />
-              
+            <TableChart />
             </ListItemIcon>
             <ListItemText primary="คะแนน" />
           </ListItem>
         </Link>
-  {/* วิเคราะห์ข้อมูล */}
-  <Link href="/วิเคราะห์ข้อมูล" passHref>
+
+        
+        {/* วิเคราะห์ข้อมูล */}
+        <Link href="/instructor/analyze" passHref>
           <ListItem
             button
-            className={router.pathname === "/วิเคราะห์ข้อมูล" ? "Mui-selected" : ""}
+            className={router.pathname === "/instructor/analyze" ? "Mui-selected" : ""}
           >
             <ListItemIcon>
-              <BarChart
-              color=""
-              />
+            <BarChart />
             </ListItemIcon>
             <ListItemText primary="วิเคราะห์ข้อมูล" />
           </ListItem>
-        </Link>
-
+        </Link> 
       </List>
+
+      <Divider /> 
     </Drawer>
   );
 }

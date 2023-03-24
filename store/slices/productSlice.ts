@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import * as serverService from "@/services/serverService";
 import { ProductData } from "@/models/product.model";
 import { RootState, store } from "../store";
-
+import { NextRouter } from "next/router";
 
 interface ProductState {
   products: ProductData[];

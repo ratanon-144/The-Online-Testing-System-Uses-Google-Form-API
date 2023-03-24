@@ -1,8 +1,9 @@
 export interface UserData {
-    username: string;
-    firstname: string;
-    lastname: string;
-    email: string;
-    image: string;
-    token?: string;
-  }
+  username?: string;
+  email?: string;
+  title?:string;
+  firstname?: string;
+  lastname?: string;
+  image?: string;
+  token?: string;
+}
