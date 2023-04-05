@@ -45,8 +45,7 @@ export const getProfiles = async (): Promise<UserData> => {
     // return (await httpClient.get(`/auth/profile`)).data;
     const response = await httpClient.get(`/auth/profile`, {
       baseURL: process.env.NEXT_PUBLIC_BASE_URL_LOCAL_API,
-    });
-    console.log(response.data);
+    }); 
     return response.data;
 };
 

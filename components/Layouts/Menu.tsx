@@ -17,6 +17,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { Layers, BarChart, Person , MenuBook, Group, PersonAdd, LibraryAddCheck, Quiz, TableChart } from "@mui/icons-material";
 import { useRouter } from "next/router";
+import { useAppDispatch } from "@/store/store";
+import { getSession, userFullname ,userID} from "@/store/slices/userSlice";
+import { useSelector } from "react-redux";
 
 const drawerWidth = 240;
 
@@ -75,6 +78,12 @@ type MenuProp = {
 export default function Menu({ open, onDrawerClose }: MenuProp) {
   const theme = useTheme();
   const router = useRouter();
+  const dispatch = useAppDispatch();
+ 
+  const checkLevel = useSelector(userID); 
+  React.useEffect(() => {
+    dispatch(getSession());
+  }, [dispatch]);
 
   return (
     <Drawer variant="permanent" open={open}>

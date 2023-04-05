@@ -17,6 +17,7 @@
     "@mui/icons-material": "^5.6.2",
     "@mui/material": "^5.6.4",
     "@mui/x-data-grid": "^5.10.0",
+    "@mui/x-data-grid-generator": "^6.0.4",
     "@mui/x-date-pickers": "^6.0.3",
     "@react-hook/debounce": "^4.0.0",
     "@reduxjs/toolkit": "^1.8.1",

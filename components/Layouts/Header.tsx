@@ -10,11 +10,12 @@ import { AccountCircle} from "@mui/icons-material";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useAppDispatch } from "@/store/store";
-import { signOut ,userSelectorAres,userExple} from "@/store/slices/userSlice";
+import { signOut ,userSelectorAres,userID,userFullname,userAll} from "@/store/slices/userSlice";
 import { useSelector } from "react-redux";
 import { UserData } from "@/models/user.model";
 import { getProfiles, profileSelector } from "@/store/slices/profileSlice";
 import { getSession } from "@/store/slices/userSlice";
+import Link from "next/link";
 const drawerWidth = 240;
 
 interface AppBarProps extends MuiAppBarProps {
@@ -46,8 +47,8 @@ type HeaderProp = {
 
 export default function Header({ open, onDrawerOpen }: HeaderProp) {
   const dispatch = useAppDispatch();
- 
-  const profileList = useSelector(userExple); 
+ const userAres = useSelector(userSelectorAres);
+  const profileList = useSelector(userFullname); 
   React.useEffect(() => {
     dispatch(getSession());
   }, [dispatch]);
@@ -74,16 +75,17 @@ export default function Header({ open, onDrawerOpen }: HeaderProp) {
           }}
         >
           <MenuIcon />
-        </IconButton> 
-        <Typography variant="h4" noWrap component="div">Quiz Bank</Typography> 
+        </IconButton>   
+        <Link href="/instructor" passHref>
+        <Typography variant="h4" noWrap component="div">Quiz Bank</Typography>
+         </Link>
          <Box sx={{ flexGrow: 1 }} /> 
-         <Button onClick={()=>{}}></Button>
-         <Typography variant="h6" noWrap component="div" fontWeight="300">
-         {/* {userList[0]}{userList[1]}{userList[2]} */} 
-         {profileList[0]} {profileList[1]} {profileList[2]} 
+      
+         <Typography variant="h6" noWrap component="div" fontWeight="300"> 
+         {profileList} 
            </Typography>  
            
-        <Box sx={{ display: { xs: "none", md: "flex" } }}>
+        <Box sx={{ display: { xs: "flex", md: "flex" } }}>
           <IconButton
             size="large"
             aria-label="account of current user"

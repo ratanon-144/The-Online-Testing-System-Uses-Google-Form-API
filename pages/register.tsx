@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import { TextField } from "formik-material-ui";
 import { Formik, Form, Field, FormikProps } from "formik";
 import Router, { useRouter } from "next/router";
-import { Box } from "@mui/material";
+import { Box, FormControl, InputLabel ,Select ,MenuItem,SelectChangeEvent} from "@mui/material";
 import { useAppDispatch } from "@/store/store";
 import { signUp } from "@/store/slices/userSlice";
 import withAuth from "@/components/withAuth";
@@ -21,11 +21,23 @@ type Props = {};
 const Register = ({}: Props) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const [userType, setUserType] = React.useState("");
+  const handleUserTypeChange = (event: SelectChangeEvent) => {
+    setUserType(event.target.value as string);
+  };
   const showForm = ({ values, setFieldValue, isValid,dirty, handleSubmit, }: FormikProps<any>) => {
     return (
       <Form onSubmit={handleSubmit}>
         <Field component={TextField}  name="username"  id="username"  margin="normal"  required   fullWidth   label="Username"   autoComplete="email"   autoFocus />
         <Field component={TextField}  name="password"  margin="normal"  required   fullWidth   label="Password"   type="password"   id="password"   autoComplete="current-password" />
+        <FormControl fullWidth margin="normal" required>
+          <InputLabel id="level-label">Level</InputLabel>
+          <Field as={Select} labelId="level-label" name="level">
+            <MenuItem value="teacher">Teacher</MenuItem>
+            <MenuItem value="student">Student</MenuItem>
+            <MenuItem value="admin">admin</MenuItem>
+          </Field>
+        </FormControl> 
         <Field component={TextField}  name="email"  id="email"  margin="normal"  required   fullWidth   label="email"   autoComplete="email"   autoFocus />
         <Field component={TextField}  name="title"  id="title"  margin="normal"  required   fullWidth   label="title"      autoFocus />
         <Field component={TextField}  name="firstname"  id="firstname"  margin="normal"  required   fullWidth   label="firstname"    autoFocus />
@@ -65,15 +77,19 @@ const Register = ({}: Props) => {
           />
           <CardContent>
             <Formik
-              initialValues={{ username: "", password: "" ,email:"",title:"",firstname:"",lastname:""}}
-              onSubmit={async (values) => {
-                const response = await dispatch(signUp(values));
-                if (response.meta.requestStatus === "rejected") {
-                  alert("Register failed");
-                } else {
-                  router.push("/login");
+                initialValues={{ username: "", password: "" ,level:"" ,email:"",title:"",firstname:"",lastname:""}}
+                onSubmit={async (values) => {
+                 // console.log("Form submitted with values: ", values);
+                  const response = await dispatch(signUp(values));
+                  if (response.meta.requestStatus === "rejected") {
+                    alert("Register failed");
+                  } else {
+                    const valuesString = JSON.stringify(values, null, 2);
+                   // alert(`Registration successful. Form values:\n${valuesString}`);
+                   router.push("/login");
+                  }
                 }
-              }}
+          }
             >
               {(props) => showForm(props)}
             </Formik>
