@@ -1,0 +1,45 @@
+### Login 
+POST http://localhost:8085/api/v2/authen/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "63015144@kmitl.ac.th",
+    "password" : "1234"
+}
+
+### Login 
+POST http://localhost:8085/api/v2/authen/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "admin1",
+    "password" : "admin1"
+}
+
+### Register 
+POST http://localhost:8085/api/v2/authen/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "admin1",
+    "password" : "12345"
+}
+
+### profile
+GET http://localhost:8085/api/v2/authen/profile HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMyIsImxldmVsIjoibm9ybWFsIiwiaWF0IjoxNjUxODA2ODE0fQ.9knJr7GBPxsfVsY9x_Id2FttUOIRiUv_DoS-QxRu_1Q
+
+### profile
+GET http://localhost:8085/api/v2/authen/profile HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjYzMDE1MTQ0QGttaXRsLmFjLnRoIiwibGV2ZWwiOiJub3JtYWwiLCJpYXQiOjE2NzkzNTA5NTJ9.Rm2YLSFG9E3-C2WLQOdoXNCIwrzJ-KbQD7KSdKEo9tg
+
+### profile
+GET http://localhost:8085/api/v2/authen/profile HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImxldmVsIjoibm9ybWFsIiwiaWF0IjoxNjc5MzUyOTM1fQ.dGd51RyPYnaLEgAtytI984Levl3fq2bNvyebrIDyjH8
+### users
+GET http://localhost:8085/api/v2/authen/users HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjYzMDE1MTQ0QGttaXRsLmFjLnRoIiwibGV2ZWwiOiJub3JtYWwiLCJpYXQiOjE2NzkzNTA5NTJ9.Rm2YLSFG9E3-C2WLQOdoXNCIwrzJ-KbQD7KSdKEo9tg
+
+###sss
+GET http://51.79.251.237:8085/api/v2/authen/profile HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsImxldmVsIjoibm9ybWFsIiwiaWF0IjoxNjc5MzUyOTM1fQ.dGd51RyPYnaLEgAtytI984Levl3fq2bNvyebrIDyjH8

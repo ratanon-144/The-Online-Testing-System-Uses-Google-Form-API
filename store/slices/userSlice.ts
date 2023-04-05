@@ -34,7 +34,7 @@ const initialState: UserState = {
 interface SignAction {
   username: string;
   password: string; 
-  user?: UserData;
+  user: UserData;
 }
 
 export const signUp = createAsyncThunk(
@@ -68,6 +68,11 @@ export const signIn = createAsyncThunk(
 export const signOut = createAsyncThunk("user/signout", async () => {
   await serverService.signOut();
   Router.push("/login");
+});
+
+export const getProfiles = createAsyncThunk("user/profile", async () => {
+  await serverService.getProfiles();
+  Router.push("/profile");
 });
 
 export const getSession = createAsyncThunk("user/fetchSession", async (credential: SignAction) => {
@@ -132,11 +137,11 @@ export const { resetUsername } = userSlice.actions;
 
 // export common user s
  
-export const userSelectorAres = (store: RootState) => store.user;
- const usertitle  = (store: RootState) =>  store.user.user?.title;
- const userFirstname = (store: RootState) => store.user.user?.firstname;
- const userLastname = (store: RootState) => store.user.user?.lastname;
-export const userExple  = (store: RootState) => [store.user.user?.title,store.user.user?.firstname,store.user.user?.lastname];
+export const userSelectorAres = (store: RootState)=> store.user;
+export const userID = (store: RootState) => store.user.user?.id;
+export const userLevel = (store: RootState):String  | undefined => store.user.user?.level;
+export const userFullname = (store: RootState) => store.user.user?.fullname;
+export const userAll = (store: RootState) => [store.user.user?.id,store.user.user?.username,store.user.user?.level,store.user.user?.fullname];
 export const isAuthenticatedSelector = (store: RootState): boolean =>store.user.isAuthenticated;
 export const isAuthenticatingSelector = (store: RootState): boolean =>store.user.isAuthenticating;
 

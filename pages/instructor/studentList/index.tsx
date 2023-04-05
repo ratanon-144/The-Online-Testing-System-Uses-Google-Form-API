@@ -24,9 +24,9 @@ export default function StudentList({}: Props) {
     const url = "http://localhost:8080/api/accounts";
 
     const columns1: GridColDef[] = [ 
-        { field: "student_id", headerName: "รหัสนักศึกษา", width: 250 },
-        { field: "fullName", headerName: "ชื่อ-นามสกุล", width: 350 },
-        { field: "email", headerName: "Emali", width: 250 },
+        { field: "student_id", headerName: "รหัสนักศึกษา", width: 250, headerClassName: 'super-app-theme--header' },
+        { field: "fullName", headerName: "ชื่อ-นามสกุล", width: 350,headerClassName: 'super-app-theme--header', },
+        { field: "email", headerName: "Emali", width: 250 ,headerClassName: 'super-app-theme--header',},
     ];
     return (
         <Layout>
