@@ -10,6 +10,7 @@ import {
   Typography,
   CardActions,
   Button,
+  Stack,
 } from "@mui/material";
 import { Field, Form, Formik, FormikProps } from "formik";
 import { TextField } from "formik-material-ui";
@@ -34,7 +35,7 @@ const Add = ({}: Props) => {
         <Card>
           <CardContent sx={{ padding: 4 }}>
             <Typography gutterBottom variant="h3">
-              Add Course
+              เพิ่มรายวิชา
             </Typography>
 
             <Field
@@ -43,7 +44,7 @@ const Add = ({}: Props) => {
               component={TextField}
               name="id_code"
               type="text"
-              label="Code"
+              label="รหัสวิชา"
             />
 
             <Field
@@ -52,26 +53,28 @@ const Add = ({}: Props) => {
               component={TextField}
               name="name"
               type="text"
-              label="Name"
+              label="ชื่อวิชา"
             />
            
           </CardContent>
           <CardActions>
+            <Stack  direction="row" justifyContent="flex-end" alignItems="flex-start" spacing={2}>
             <Button
-              disabled={!isValid}
-              fullWidth
+              disabled={!isValid} 
               variant="contained"
               color="primary"
               type="submit"
+              fullWidth
               sx={{ marginRight: 1 }}
             >
-              Add
+              ตกลง
             </Button>
             <Link href="/instructor" passHref>
               <Button variant="outlined" fullWidth>
-                Cancel
+                ยกเลิก
               </Button>
             </Link>
+            </Stack>
           </CardActions>
         </Card>
       </Form>

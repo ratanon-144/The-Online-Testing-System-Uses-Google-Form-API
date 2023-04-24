@@ -72,7 +72,7 @@ const Instructor = ({ }: Props) => {
   return (
     <Layout>
       <Stack spacing={2}>
-        <Typography text-align='left' variant='h3'>รายการวิชา {userId}</Typography>
+        <Typography text-align='left' variant='h3'>รายการวิชา </Typography>
         <Card sx={{ margin: "10", padding: "30px 25px", textTransform: "capitalize", }}>
           <Stack spacing={2}>
             <Stack direction="row" justifyContent="flex-end" alignItems="flex-start" spacing={2}>
