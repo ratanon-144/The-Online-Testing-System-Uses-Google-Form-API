@@ -8,8 +8,28 @@ import { clearCookie, setCookie } from "@/utils/cookiesUtil";
 import httpClient from "@/utils/httpClient";
 import type { NextApiRequest, NextApiResponse } from "next";
 import cookie from "cookie";
+import Cors from "cors";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+// Initializing the cors middleware
+const cors = Cors({
+  origin: "*", // Be sure to change this to your actual client domain
+  methods: ["GET", "POST"],
+});
+
+function runMiddleware(req: any, res: any, fn: any) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result: any) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+      return resolve(result);
+    });
+  });
+}
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  await runMiddleware(req, res, cors);
+
   const action = req.query?.["nextAuth"]?.[0];
   if (req.method === HTTP_METHOD_POST && action === "signin") {
     return signin(req, res);
