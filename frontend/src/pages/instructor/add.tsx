@@ -98,7 +98,7 @@ const Add = ({}: Props) => {
           return errors;
         }}
         initialValues={initialValues}
-        onSubmit={async (values, { setSubmitting }) => {
+        onSubmit={async (values:any, { setSubmitting }) => {
           await addCourse(values);
           router.push("/instructor");
           setSubmitting(false);

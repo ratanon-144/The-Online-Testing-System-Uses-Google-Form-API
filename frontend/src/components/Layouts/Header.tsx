@@ -11,7 +11,7 @@ import { useAppDispatch } from "@/store/store";
 import { signOut,userFullname,getSession} from "@/store/slices/userSlice";
 import { useSelector } from "react-redux";
 
-import Link from "next/link";
+import Link from '@mui/material/Link';
 const drawerWidth = 240;
 
 interface AppBarProps extends MuiAppBarProps {
@@ -71,8 +71,8 @@ export default function Header({ open, onDrawerOpen }: HeaderProp) {
         >
           <MenuIcon />
         </IconButton>   
-        <Link href="/instructor" passHref>
-        <Typography variant="h4" noWrap component="div">Quiz Bank</Typography>
+        <Link href="/instructor"  color="inherit" underline="none">
+        <Typography variant="h4" noWrap >Quiz Bank</Typography>   
          </Link>
          <Box sx={{ flexGrow: 1 }} /> 
       

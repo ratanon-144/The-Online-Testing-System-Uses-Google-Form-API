@@ -31,23 +31,23 @@ export const getCourseById = createAsyncThunk(
 export const addCourse = createAsyncThunk(
   "course/add",
   async (course: CourseData) => {
-    await serverService.addCourse(course);
+    const formData = new FormData();
+    formData.append('id_code', course.id_code);
+    formData.append('name', course.name);
+    // append other fields as needed
+  
+    await serverService.addCourse(formData);
     store.dispatch(getCourses());
   }
 );
 
-export const updateCourse = createAsyncThunk(
-  "course/edit",
-  async ({ id, course }: { id: string, course: CourseData }) => {
-    await serverService.updateCourse(id, course);
-    store.dispatch(getCourses());
-  }
-);
-
+ 
 export const deleteCourse = createAsyncThunk(
   "course/delete",
   async (id: string) => {
-    await serverService.deleteCourse(id);
+    const idNumber = parseInt(id); // convert string to number
+
+    await serverService.deleteCourse(idNumber);
     store.dispatch(getCourses());
   }
 );
@@ -65,7 +65,7 @@ const courseSlice = createSlice({
       state.courses = action.payload;
     });
     builder.addCase(getCourseById.fulfilled, (state, action) => {
-      state.currentCourse = action.payload;
+      state.currentCourse = action.payload[0] || null;
     });
   },
 });

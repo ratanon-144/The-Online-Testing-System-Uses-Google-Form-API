@@ -44,7 +44,9 @@ const Instructor = ({ }: Props) => {
           <Moment format="DD/MM/YYYY HH:mm">{value}</Moment>
         </Typography>
       ),
-    }, {
+    },
+    // { field: 'sec', headerName: 'Sec', flex: 1, editable: true },
+     {
       headerName: "ACTION", field: ".", width: 120,
       renderCell: ({ row }: GridRenderCellParams<any>) => (
         <Stack direction="row">
@@ -72,13 +74,13 @@ const Instructor = ({ }: Props) => {
   return (
     <Layout>
       <Stack spacing={2}>
-        <Typography text-align='left' variant='h3'>รายการวิชา </Typography>
+        <Typography text-align='left' variant='h3'>รายวิชา</Typography>
         <Card sx={{ margin: "10", padding: "30px 25px", textTransform: "capitalize", }}>
           <Stack spacing={2}>
             <Stack direction="row" justifyContent="flex-end" alignItems="flex-start" spacing={2}>
               <Button size='large' variant='contained' href='/instructor/add'>เพิ่มรายวิชา</Button>
             </Stack>
-            <Box sx={{ height: 600, width: "100%", "& .super-app-theme--header": { backgroundColor: "#FF9800", color: "#FFF" } }}>
+            <Box sx={{ height: 400, width: "100%", "& .super-app-theme--header": { backgroundColor: "#FF9800", color: "#FFF" } }}>
               <DataGrid
                 rows={rows ?? []}
                 columns={columns}

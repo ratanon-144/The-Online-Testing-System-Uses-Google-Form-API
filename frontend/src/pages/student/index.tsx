@@ -5,31 +5,28 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 import SaveIcon from "@mui/icons-material/Save";
 import CancelIcon from "@mui/icons-material/Close";
-import {GridRowsProp,GridRowModesModel,GridRowModes,DataGrid,GridColumns,GridRowParams,MuiEvent,GridToolbarContainer,GridActionsCellItem,GridEventListener,GridRowId, GridRowModel, useGridApiContext,gridEditRowsStateSelector
-} from "@mui/x-data-grid";
-import { randomId} from "@mui/x-data-grid-generator";
+import {GridRowsProp,GridRowModesModel,GridRowModes,DataGridPro,GridRowParams,MuiEvent,GridToolbarContainer,GridActionsCellItem,GridEventListener,GridRowId, GridRowModel, GridColDef
+} from "@mui/x-data-grid-pro";
 import Layout from "@/components/Layouts/Layout";
 import withAuth from "@/components/withAuth";
 import { Card, Stack, Typography ,Box } from "@mui/material";
-import { useAppDispatch } from "@/store/store";
-import { useSelector } from "react-redux";
-import StudentList from "pages/instructor/addInstructor";
+
 const initialRows: GridRowsProp = [
   {
-    id: randomId(),
+    id: 1,
     subjectid: "1",
     subjectname: "Application Layer",
     secid: "101",
   },
   {
-    id: randomId(),
+    id: 2,
     
     subjectid: "2",
     subjectname: "Transport Layer",
         secid: "53",
   },
   {
-    id: randomId(),
+    id: 3,
     subjectid: "3",
     subjectname: "Network Layer",
     secid: "101",
@@ -47,8 +44,8 @@ interface EditToolbarProps {
 function EditToolbar(props: EditToolbarProps) {
   const { setRows, setRowModesModel } = props;
 
-  const handleClick = () => {
-    const id = randomId();
+  const handleClick = (rows:any) => {
+    const id = Math.max(...rows.map((rows:any) => rows.id), 0) + 1;
     setRows((oldRows) => [...oldRows, { id, subjectid: "", subjectname: "" ,secid: "", isNew: true }]);
     setRowModesModel((oldModel) => ({
       ...oldModel,
@@ -66,22 +63,7 @@ function EditToolbar(props: EditToolbarProps) {
   );
 }
 
-function SaveButton({ id, ...props }): JSX.Element {
-  const apiRef = useGridApiContext();
-  const editState = gridEditRowsStateSelector(apiRef.current.state);
-  const subjectnameValue = editState[id]?.subjectname?.value;
 
-  return (
-     // eslint-disable-next-line react/jsx-key
-    <GridActionsCellItem
-      icon={<SaveIcon />}
-      label="Save"
-      color="primary"
-      disabled={!subjectnameValue}
-      {...props}
-    />
-  );
-}
 type Props = {};
 const Student = ({}: Props) => {
   const [rows, setRows] = React.useState(initialRows);
@@ -133,7 +115,7 @@ const Student = ({}: Props) => {
     return updatedRow;
   };
 
-  const columns: GridColumns = [
+  const columns: GridColDef[]  = [
     { field: "subjectid", type: "string", headerName: "ลำดับ", width: 180, headerClassName: 'super-app-theme--header', editable: true },
     { field: "subjectname", type: "string",  headerName: "ชื่อเรื่อง", flex: 1,headerClassName: 'super-app-theme--header', editable: true },
      {field: "actions",type: "actions",headerName: "Actions", width: 100, headerClassName: 'super-app-theme--header', cellClassName: "actions",
@@ -141,8 +123,9 @@ const Student = ({}: Props) => {
         const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
         if (isInEditMode) {
           return [ // eslint-disable-next-line react/jsx-key
-            <SaveButton onClick={handleSaveClick(id)} id={id} />, // eslint-disable-next-line react/jsx-key
-            <GridActionsCellItem
+           // <SaveButton onClick={handleSaveClick(id)} id={id} />,  
+           // eslint-disable-next-line react/jsx-key
+           <GridActionsCellItem
               icon={<CancelIcon />}
               label="Cancel"
               className="textPrimary"
@@ -178,8 +161,8 @@ return (
 <Typography text-align='left' variant='h3'>คะแนน</Typography>  
  <Card  sx={{ margin: "10",   padding: "30px 25px",    textTransform: "capitalize",    }}> 
         <Stack spacing={2}> 
-                     <Box  sx={{    height: 600,    width: "100%", "& .super-app-theme--header": {backgroundColor: "#FF9800",color:"#FFF" } }}> 
-                    <DataGrid rows={rows}  columns={columns}  
+                     <Box  sx={{    height: 400,    width: "100%" }}> 
+                    <DataGridPro rows={rows}  columns={columns}  
                     /></Box>
             </Stack>
          

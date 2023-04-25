@@ -52,26 +52,7 @@ const withAuth = (WrappedComponent: React.FC) => (props: any) => {
         return null;
       }
     }
- 
-      // If user is not logged in, return login component
-      // if (route !== "/login" && route !== "/register") {
-      //   if (!isAuthenticated) {
-      //     router.push(`/login`);
-      //     return null;
-      //   } else if (route == "/") {
-      //     router.push('/instructor'); // default page after login when call root path
-      //     return null;
-      //   }
-      // } else {
-      //   if (isAuthenticated && isUserAres.user?.level === "teacher") {
-      //     router.push('/instructor'); // default page after login
-      //     return null;
-      //   }else if (isAuthenticated && isUserAres.user?.level === "student") {
-      //     router.push('/student'); //  default page after login
-      //     return null;
-      //   }
-      // }
-
+  
     // If user is logged in, return original component
     return <WrappedComponent {...props} />;
   }

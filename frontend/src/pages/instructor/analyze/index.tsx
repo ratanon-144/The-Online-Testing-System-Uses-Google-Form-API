@@ -28,7 +28,7 @@ const chartOption: any = {
     legend: { display: true },
     title: {
       display: true,
-      text: "ChartJS",
+      text: "Chart",
       position: "top",
     },
   },
@@ -115,7 +115,7 @@ const Analyze = () => {
   return (
     <Layout>
       <Paper sx={{ padding: 4 }} elevation={7}>
-        <Typography variant="h1">Sale Chart</Typography>
+      <Typography text-align='' variant='h3'>ภาพรวม</Typography>   
         <ButtonGroup
           size="large"
           color="primary"
@@ -149,7 +149,7 @@ const Analyze = () => {
         >
           <RefreshIcon />
         </IconButton>
-        <div style={{ height: 500 }}>
+        <div style={{ height: 300 }}>
           {chartType === "line" && (
             <Chart
               type={"line"}

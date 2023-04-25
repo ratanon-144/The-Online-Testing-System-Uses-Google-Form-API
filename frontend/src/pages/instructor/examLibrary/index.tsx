@@ -2,7 +2,7 @@ import Layout from "@/components/Layouts/Layout";
 import { Edit, LocationOn, PersonAdd } from "@mui/icons-material";
 import { Avatar, Box, Button,Card,    Chip,    Divider,    IconButton,    ListItem,ListItemIcon,  ListItemText,   Stack,   Switch,   TextField,   Typography,} from "@mui/material";
 import { grey } from "@mui/material/colors";
-import { DataGrid, GridActionsCellItem, GridColDef, GridColumns, GridRowId } from "@mui/x-data-grid";
+import { DataGridPro, GridActionsCellItem, GridColDef, GridRowId } from "@mui/x-data-grid-pro";
 import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
@@ -52,11 +52,11 @@ export default function Library({}: Props) {
         },
         []
     );
-    const columns = React.useMemo<GridColumns<Row>>(
+    const columns = React.useMemo(
         () => [  { field: "id", type: "string", headerName: "ลำดับ",  width: 150,   headerClassName: "super-app-theme--header", },
             { field: "titename", type: "string",  headerName: "ชื่อเรื่อง",  flex: 1,headerClassName: "super-app-theme--header"}, 
             {  field: "actions",type: "actions",headerName: "Actions",   width: 200,  headerClassName: "super-app-theme--header", 
-             getActions: (params) => [
+             getActions: (params:any) => [
                     // eslint-disable-next-line react/jsx-key
                     <GridActionsCellItem icon={<ModeEditIcon />}  label='Editter' onClick={duplicateUser(params.id)}/>, 
                     // eslint-disable-next-line react/jsx-key
@@ -76,10 +76,10 @@ export default function Library({}: Props) {
                            เพิ่มเรื่อง
                         </Button>
                     </Stack>
-                        <Box sx={{ height: 600,width: "100%",  "& .super-app-theme--header": {  backgroundColor: "#FF9800", color: "#FFFF", },}}>
+                        <Box sx={{ height: 300, width: "100%", "& .super-app-theme--header": {  backgroundColor: "#FF9800", color: "#FFFF", },}}>
                             {/* <DataGrid    rows={rows2} columns={columns2}  pageSize={5} rowsPerPageOptions={[5]} checkboxSelection/> */}
                             {/* <DataGrid rows={rows} columns={columns}  pageSize={5} rowsPerPageOptions={[5]}  getRowHeight={() => 'auto'}   /> */}
-                            <DataGrid columns={columns} rows={rows} />
+                            <DataGridPro columns={columns} rows={rows} />
                         </Box>
              
                     </Stack>
