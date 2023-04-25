@@ -83,7 +83,7 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
       <Divider />
       <List>
         {/* รายวิชา */}
-        <Link href="/instructor" passHref color="inherit" underline="none">
+       
           <ListItem
             button
             className={router.pathname === "/instructor" ? "Mui-selected" : ""}
@@ -93,10 +93,10 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
             </ListItemIcon>
             <ListItemText primary="รายวิชา" />
           </ListItem>
-        </Link>
+         
 
         {/* การทดสอบ */}
-        <Link href="/instructor/testStatus" passHref color="inherit" underline="none">
+       
           <ListItem
             button
             className={router.pathname === "/instructor/testStatus" ? "Mui-selected" : ""}
@@ -106,10 +106,10 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
             </ListItemIcon>
             <ListItemText primary="การทดสอบ" />
           </ListItem>
-        </Link>
+      
 
            {/* รายชื่อ */}
-           <Link href="/instructor/studentList" passHref color="inherit" underline="none">
+          
           <ListItem
             button
             className={router.pathname === "/instructor/studentList" ? "Mui-selected" : ""}
@@ -119,12 +119,11 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
             </ListItemIcon>
             <ListItemText primary="รายชื่อ" />
           </ListItem>
-        </Link>
+        
 
         {/* เพิ่มผู้สอน */}
-        <Link href="/instructor/addInstructor" passHref color="inherit" underline="none">
-          <ListItem
-            button
+            <ListItem
+             
             className={router.pathname === "/instructor/addInstructor" ? "Mui-selected" : ""}
           >
             <ListItemIcon>
@@ -132,13 +131,12 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
             </ListItemIcon>
             <ListItemText primary="เพิ่มผู้สอน" />
           </ListItem>
-        </Link>
+       
 
         
         {/* คลังข้อสอบ */}
-        <Link href="/instructor/examLibrary" passHref color="inherit" underline="none">
-          <ListItem
-            button
+           <ListItem
+             
             className={router.pathname === "/instructor/examLibrary" ? "Mui-selected" : ""}
           >
             <ListItemIcon>
@@ -146,12 +144,11 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
             </ListItemIcon>
             <ListItemText primary="คลังข้อสอบ" />
           </ListItem>
-        </Link>
+       
 
           {/* คะแนน */}
-          <Link href="/instructor/score" passHref color="inherit" underline="none">
-          <ListItem
-            button
+            <ListItem
+             
             className={router.pathname === "/instructor/score" ? "Mui-selected" : ""}
           >
             <ListItemIcon>
@@ -159,13 +156,12 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
             </ListItemIcon>
             <ListItemText primary="คะแนน" />
           </ListItem>
-        </Link>
+        
 
         
         {/* วิเคราะห์ข้อมูล */}
-        <Link href="/instructor/analyze" passHref color="inherit" underline="none">
-          <ListItem
-            button
+            <ListItem
+             
             className={router.pathname === "/instructor/analyze" ? "Mui-selected" : ""}
           >
             <ListItemIcon>
@@ -173,7 +169,7 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
             </ListItemIcon>
             <ListItemText primary="วิเคราะห์ข้อมูล" />
           </ListItem>
-        </Link>
+       
       </List> 
 
       <Divider /> 
