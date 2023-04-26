@@ -54,7 +54,7 @@ const Analyze = () => {
     labels: labels,
     datasets: [
       {
-        label: "Revenue 2022",
+        label: "2563",
         fill: false,
         lineTension: 0.1, // line curve
         backgroundColor: [
@@ -83,7 +83,7 @@ const Analyze = () => {
         data: chartData1,
       },
       {
-        label: "Revenue 2023",
+        label: "2564",
         fill: false,
         lineTension: 0.1, // line curve
         borderWidth: 0.5, // line thiness
@@ -115,7 +115,7 @@ const Analyze = () => {
   return (
     <Layout>
       <Paper sx={{ padding: 4 }} elevation={7}>
-      <Typography text-align='' variant='h3'>ภาพรวม</Typography>   
+      <Typography text-align='' variant='h3'>กราฟเปรียบเทียบคะแนน</Typography>   
         <ButtonGroup
           size="large"
           color="primary"

@@ -6,11 +6,19 @@ import Divider from "@mui/material/Divider";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { ListItem } from "@mui/material";
-import Link from '@mui/material/Link';
-import { BarChart, MenuBook, Group, PersonAdd, LibraryAddCheck, Quiz, TableChart } from "@mui/icons-material";
+import Link from 'next/link';
+import {
+  BarChart,
+  MenuBook,
+  Group,
+  PersonAdd,
+  LibraryAddCheck,
+  Quiz,
+  TableChart,
+} from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { useAppDispatch } from "@/store/store";
-import { getSession, userID} from "@/store/slices/userSlice";
+import { getSession, userID } from "@/store/slices/userSlice";
 import { useSelector } from "react-redux";
 
 const drawerWidth = 240;
@@ -71,108 +79,110 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
   const theme = useTheme();
   const router = useRouter();
   const dispatch = useAppDispatch();
- 
-  const checkLevel = useSelector(userID); 
+
+  const checkLevel = useSelector(userID);
   React.useEffect(() => {
     dispatch(getSession());
   }, [dispatch]);
 
   return (
     <Drawer variant="permanent" open={open}>
-      <DrawerHeader/>
+      <DrawerHeader />
       <Divider />
       <List>
         {/* รายวิชา */}
-       
-          <ListItem
-            button
-            className={router.pathname === "/instructor" ? "Mui-selected" : ""}
-          >
-            <ListItemIcon>
-              <MenuBook />
-            </ListItemIcon>
-            <ListItemText primary="รายวิชา" />
-          </ListItem>
-         
+        <ListItem
+          button
+          selected={router.pathname === "/instructor"}
+          component={Link}
+          href="/instructor"
+        >
+          <ListItemIcon>
+            <MenuBook />
+          </ListItemIcon>
+          <ListItemText primary="รายวิชา" />
+        </ListItem>
 
         {/* การทดสอบ */}
-       
-          <ListItem
-            button
-            className={router.pathname === "/instructor/testStatus" ? "Mui-selected" : ""}
-          >
-            <ListItemIcon>
+        <ListItem
+          button
+          selected={router.pathname === "/instructor/testStatus"}
+          component={Link}
+          href="/instructor/testStatus"
+        >
+          <ListItemIcon>
             <LibraryAddCheck />
-            </ListItemIcon>
-            <ListItemText primary="การทดสอบ" />
-          </ListItem>
-      
+          </ListItemIcon>
+          <ListItemText primary="การทดสอบ" />
+        </ListItem>
 
-           {/* รายชื่อ */}
-          
-          <ListItem
-            button
-            className={router.pathname === "/instructor/studentList" ? "Mui-selected" : ""}
-          >
-            <ListItemIcon>
+        {/* รายชื่อ */}
+        <ListItem
+          button
+          selected={router.pathname === "/instructor/studentList"}
+          component={Link}
+          href="/instructor/studentList"
+        >
+          <ListItemIcon>
             <Group />
-            </ListItemIcon>
-            <ListItemText primary="รายชื่อ" />
-          </ListItem>
-        
+          </ListItemIcon>
+          <ListItemText primary="รายชื่อ" />
+        </ListItem>
 
         {/* เพิ่มผู้สอน */}
-            <ListItem
-             
-            className={router.pathname === "/instructor/addInstructor" ? "Mui-selected" : ""}
-          >
-            <ListItemIcon>
+        <ListItem
+          button
+          selected={router.pathname === "/instructor/addInstructor"}
+          component={Link}
+          href="/instructor/addInstructor"
+        >
+          <ListItemIcon>
             <PersonAdd />
-            </ListItemIcon>
-            <ListItemText primary="เพิ่มผู้สอน" />
-          </ListItem>
-       
+          </ListItemIcon>
+          <ListItemText primary="เพิ่มผู้สอน" />
+        </ListItem>
 
-        
         {/* คลังข้อสอบ */}
-           <ListItem
-             
-            className={router.pathname === "/instructor/examLibrary" ? "Mui-selected" : ""}
-          >
-            <ListItemIcon>
+        <ListItem
+          button
+          selected={router.pathname === "/instructor/examLibrary"}
+          component={Link}
+          href="/instructor/examLibrary"
+        >
+          <ListItemIcon>
             <Quiz />
-            </ListItemIcon>
-            <ListItemText primary="คลังข้อสอบ" />
-          </ListItem>
-       
+          </ListItemIcon>
+          <ListItemText primary="คลังข้อสอบ" />
+        </ListItem>
 
-          {/* คะแนน */}
-            <ListItem
-             
-            className={router.pathname === "/instructor/score" ? "Mui-selected" : ""}
-          >
-            <ListItemIcon>
+        {/* คะแนน */}
+        <ListItem
+          button
+          selected={router.pathname === "/instructor/score"}
+          component={Link}
+          href="/instructor/score"
+        >
+          <ListItemIcon>
             <TableChart />
-            </ListItemIcon>
-            <ListItemText primary="คะแนน" />
-          </ListItem>
-        
+          </ListItemIcon>
+          <ListItemText primary="คะแนน" />
+        </ListItem>
 
-        
         {/* วิเคราะห์ข้อมูล */}
-            <ListItem
-             
-            className={router.pathname === "/instructor/analyze" ? "Mui-selected" : ""}
-          >
-            <ListItemIcon>
+        <ListItem
+          button
+          selected={router.pathname === "/instructor/analyze"}
+          component={Link}
+          href="/instructor/analyze"
+        >
+          <ListItemIcon>
             <BarChart />
-            </ListItemIcon>
-            <ListItemText primary="วิเคราะห์ข้อมูล" />
-          </ListItem>
-       
-      </List> 
+          </ListItemIcon>
+          <ListItemText primary="วิเคราะห์ข้อมูล" />
+        </ListItem>
+      </List>
 
-      <Divider /> 
+      <Divider />
     </Drawer>
   );
 }
