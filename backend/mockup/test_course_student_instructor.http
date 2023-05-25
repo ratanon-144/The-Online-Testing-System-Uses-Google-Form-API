@@ -1,14 +1,14 @@
 ### Create the add student to course ||instructor 
-POST http://localhost:8085/api/v2/course/courses/1/students HTTP/1.1
+POST http://localhost:8085/api/v2/course/courses/6/users HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtodGhhbmFAa21pdGwuYWMudGgiLCJsZXZlbCI6Imluc3RydWN0b3IiLCJpYXQiOjE2ODIxNjU0OTN9.l2WO2wbqml6AaJf6EBTT7Urs8102zlQITHtTHQW53p8
 Content-Type: application/json
 
 {  
-   "username":"63015144"
+   "username":"63015146"    
 } 
 
 ### Create the add student to course ||instructor 
-POST http://localhost:8085/api/v2/course/courses/1/students HTTP/1.1
+POST http://localhost:8085/api/v2/course/courses/1/users HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtodGhhbmFAa21pdGwuYWMudGgiLCJsZXZlbCI6Imluc3RydWN0b3IiLCJpYXQiOjE2ODIxNjU0OTN9.l2WO2wbqml6AaJf6EBTT7Urs8102zlQITHtTHQW53p8
 Content-Type: application/json
 
@@ -27,7 +27,7 @@ Content-Type: application/json
 
 
 ### Route to get a list of students enrolled in a course
-GET http://localhost:8085/api/v2/course/courses/1/students HTTP/1.1
+GET http://localhost:8085/api/v2/course/courses/1/users HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtodGhhbmFAa21pdGwuYWMudGgiLCJsZXZlbCI6Imluc3RydWN0b3IiLCJpYXQiOjE2ODIxNjU0OTN9.l2WO2wbqml6AaJf6EBTT7Urs8102zlQITHtTHQW53p8
 
 ### Route to get a list of instructor enrolled in a course  

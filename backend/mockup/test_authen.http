@@ -32,10 +32,10 @@ POST http://localhost:8085/api/v2/authen/register HTTP/1.1
 Content-Type: application/json
  
 {
-    "username":"63015144",
-    "password":"63015144",
+    "username":"63015146",
+    "password":"63015146",
     "level":"student",
-    "email":"63015144@kmitl.ac.th",
+    "email":"63015146@kmitl.ac.th",
     "title":"นาย",
     "firstname":"รฐนนท์",
     "lastname":"แสงรุ่งสว่าง"
@@ -58,7 +58,7 @@ Content-Type: application/json
 
  
 ### LOGIN Test teacher ||instructor  1
-POST http://51.79.251.237:8085/api/v2/authen/login HTTP/1.1
+POST http://localhost:8085/api/v2/authen/login HTTP/1.1
 Content-Type: application/json
 
 {
@@ -78,6 +78,8 @@ Content-Type: application/json
 
 
 
+
+ 
 #### 
 {
   "result": "ok",
@@ -106,9 +108,9 @@ Content-Type: application/json
 }
 
 
-### get profile student
-GET http://51.79.251.237:8085/api/v2/authen/profile HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjYzMDE1MTQ0IiwiaWF0IjoxNjgwNjc0NDMwfQ.aMcy-Zix8GrXpF4wGWu90HAlkoiO4kDN5TvzeDpi0iA
+### get profile 
+GET http://localhost:8085/api/v2/authen/profile HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtodGhhbmFAa21pdGwuYWMudGgiLCJsZXZlbCI6Imluc3RydWN0b3IiLCJpYXQiOjE2ODQ5NDI5NDF9.bZJ1WbN-696Xt-ejoyVVHuFauQAX8vI6H8XtBemc_xE
 
 
 ###  get profile instructor 
@@ -117,9 +119,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imtod
 
 
 
-### Query all users student || instructor 
+### Query all users 
 GET http://localhost:8085/api/v2/authen/users HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjYzMDE1MTQ0IiwiaWF0IjoxNjgwNjc0NDMwfQ.aMcy-Zix8GrXpF4wGWu90HAlkoiO4kDN5TvzeDpi0iA
-
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtodGhhbmFAa21pdGwuYWMudGgiLCJsZXZlbCI6Imluc3RydWN0b3IiLCJpYXQiOjE2ODIwMjExNjJ9.HgbF7idQeoEHFNhaj84QSL8SLIylo9hJVUnXt-tGkRM
 

@@ -4,8 +4,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imtod
 Content-Type: application/json
 
 {  
-    "id_code":"0107600922",
-    "name":"NETWORK ALL 123"
+    "id_code":"0107600924",
+    "name":"NETWORK BASIC"
 }
 
 ### Create the new course ||instructor  2
@@ -21,19 +21,19 @@ Content-Type: application/json
 
 
 ### update course ||instructor  1
-PUT http://51.79.251.237:8085/api/v2/course/courses/1 HTTP/1.1
+PUT http://localhost:8085/api/v2/course/courses/1 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtodGhhbmFAa21pdGwuYWMudGgiLCJsZXZlbCI6Imluc3RydWN0b3IiLCJpYXQiOjE2ODIzNDYxMDF9.atXNKTu-A8socQiss0ZTIapcdR4hf4NG-uMrZC-umHc
 Content-Type: application/json
 
 {   
-    "id_code":"3212332312",
-    "name":"Computer Organization And Assembly Language 2asdadad"
-    
+    "id_code":"0107600923",
+    "name":"Computer Organization And Assembly Language"
+  
 }
 
 
 ### get courses ||instructor  1
-GET http://localhost:8085/api/v2/course/courses/22 HTTP/1.1
+GET http://localhost:8085/api/v2/course/courses/6 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtodGhhbmFAa21pdGwuYWMudGgiLCJsZXZlbCI6Imluc3RydWN0b3IiLCJpYXQiOjE2ODIxNjU0OTN9.l2WO2wbqml6AaJf6EBTT7Urs8102zlQITHtTHQW53p8
 
 ### get courses ||instructor  2
@@ -49,12 +49,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNob
 
 
 ### delete course ||instructor 
-delete http://localhost:8085/api/v2/course/courses/22 HTTP/1.1
+delete http://localhost:8085/api/v2/course/courses/4 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtodGhhbmFAa21pdGwuYWMudGgiLCJsZXZlbCI6Imluc3RydWN0b3IiLCJpYXQiOjE2ODIxNjU0OTN9.l2WO2wbqml6AaJf6EBTT7Urs8102zlQITHtTHQW53p8
 
 
 ### Create a new quiz with the given name and associate it with the course   ||instructor 
-POST http://localhost:8085/api/v2/test/courses/2/quizzes HTTP/1.1
+POST http://localhost:8085/api/v2/course/courses/6/quizzes HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtodGhhbmFAa21pdGwuYWMudGgiLCJsZXZlbCI6Imluc3RydWN0b3IiLCJpYXQiOjE2ODIwMjExNjJ9.HgbF7idQeoEHFNhaj84QSL8SLIylo9hJVUnXt-tGkRM
 Content-Type: application/json
 
@@ -149,7 +149,7 @@ Delete http://localhost:8085/api/v2/test/courses/1/quizzes/22 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtodGhhbmFAa21pdGwuYWMudGgiLCJsZXZlbCI6Imluc3RydWN0b3IiLCJpYXQiOjE2ODIwMjExNjJ9.HgbF7idQeoEHFNhaj84QSL8SLIylo9hJVUnXt-tGkRM
 
 ### Define a route to get a list of quizzes
-GET http://localhost:8085/api/v2/test/courses/5/question HTTP/1.1
+GET http://localhost:8085/api/v2/course/courses/6/question HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtodGhhbmFAa21pdGwuYWMudGgiLCJsZXZlbCI6Imluc3RydWN0b3IiLCJpYXQiOjE2ODIwMjExNjJ9.HgbF7idQeoEHFNhaj84QSL8SLIylo9hJVUnXt-tGkRM
 
 

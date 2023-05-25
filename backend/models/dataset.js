@@ -27,7 +27,6 @@ const User = sequelize.define('User', {
     allowNull: false
   },fullname: DataTypes.STRING
 });
-
 // Define Course model
 const Course = sequelize.define('Course', {
   id: {
@@ -45,7 +44,6 @@ const Course = sequelize.define('Course', {
     allowNull: false
   }
 });
-
 // Define Quiz model
 const Quiz = sequelize.define('Quiz', {
   id: {
@@ -59,7 +57,6 @@ const Quiz = sequelize.define('Quiz', {
     allowNull: false
   }
 });
-
 // Define Question model
 const Question = sequelize.define('Question', {
   id: {
@@ -73,7 +70,6 @@ const Question = sequelize.define('Question', {
     allowNull: false
   }
 });
-
 // Define Answer model
 const Answer = sequelize.define('Answer', {
   id: {
@@ -91,28 +87,22 @@ const Answer = sequelize.define('Answer', {
     allowNull: false
   }
 });
-
 // Define Course-User association
 Course.belongsToMany(User, { through: 'Enrollment' });
 User.belongsToMany(Course, { through: 'Enrollment' });
-
 // Define Quiz-Course association
 Quiz.belongsTo(Course);
 Course.hasMany(Quiz);
-
 // Define Question-Quiz association
 Question.belongsTo(Quiz);
 Quiz.hasMany(Question);
-
 // Define Answer-Question association
 Answer.belongsTo(Question);
 Question.hasMany(Answer);
-
 (async () => {
    // await sequelize.drop();
    await sequelize.sync({ force: false });
  })();
- 
 // Export the defined models
 module.exports = { User, Course, Quiz, Question, Answer ,sequelize };
 

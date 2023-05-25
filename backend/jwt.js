@@ -1,6 +1,7 @@
-const jwt = require("jsonwebtoken");
-var secret_key = "12344321";
 
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
+var secret_key = process.env.SECRETTOKEN_KEY;
 module.exports = {
   sign: (payload) => {
     return jwt.sign(payload, secret_key);
@@ -24,7 +25,6 @@ module.exports = {
           return res.status(500).json({ auth: false, message: err });
         }
       }
-
       // if everything good, save to request for use in other routes
       req.username = decoded.username;
       req.level = decoded.level;

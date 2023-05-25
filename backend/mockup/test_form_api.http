@@ -1,0 +1,30 @@
+ 
+## forms create 
+post http://localhost:8085/api/v2/forms/create HTTP/1.1
+Content-Type: application/json
+
+{
+  "EMAIL": "63015100@kmitl.ac.th",
+  "FORM_NAME": "แบบทดสอบครั้งที่ 1",
+  "QUESTION_TITLE":"63015100@kmitl.ac.th",
+  "questions": [
+    {
+      "title": "อินเตอร์เน็ต คืออะไร",
+      "choices": ["ระบบไมโครคอมพิวเตอร์", "ระบบเมนเฟรม", "ระบบเครือข่ายที่เชื่อมโยงกันหลาย ๆ เครือข่ายทั่วโลก","ระบบเครือข่ายเดี่ยว"]
+    },
+    {
+      "title": "www ยอมาจากอะไร",
+      "choices": ["World Wide Web", "World War Web","World Wan Web", "World Wide Wan"]
+    } 
+  ]
+}
+
+####  A
+post http://localhost:8085/api/v2/mail/send HTTP/1.1
+Content-Type: application/json
+
+{
+ "email": "63015144@kmitl.ac.th",
+ "subject": "Test Message",
+ "content":"ทดส่ง ข้อความ"
+}
