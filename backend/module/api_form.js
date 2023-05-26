@@ -123,7 +123,7 @@ async function createForm(formData) {
             ],
           },
         });
-      //  console.log(`Question "${questionData.title}" added to form`);
+         
     }
 
     // Grant permission to the specified email address
@@ -137,6 +137,7 @@ async function createForm(formData) {
       },
     });
     console.log(`Permission granted to ${formData.EMAIL}`);
+    console.log(response.data)
     return response.data;
   } catch (err) {
     console.error(err);

@@ -58,6 +58,7 @@ async function sendEmail(emailAddress, subject, content) {
         .replace(/\+/g, "-")
         .replace(/\//g, "_");
     }
+    console.log(data);
     return data.status;
   } catch (error) {
     console.error(error);
